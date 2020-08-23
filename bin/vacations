@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/top_10_vacations'
+
+Top10Vacations::CLI.new.call
