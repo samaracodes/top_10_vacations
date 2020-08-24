@@ -1,6 +1,6 @@
-class Top10Vacations::Season
-    @@all = []
+class Top10Vacations::Location
     attr_accessor :name
+    @@all = []
 
     def initialize(name)
         @name = name
