@@ -13,7 +13,7 @@ class Top10Vacations::Scraper
         destinations.shift
 
         destinations.each do |d|
-            result = d.text
+            name = d.text
             Top10Vacations::Destination.new(name)
         end
     end
@@ -28,8 +28,8 @@ class Top10Vacations::Scraper
     
 
         destination_info.each.with_index do |details|
-            result = details.text
-            Top10Vacations::Destination.new(result)
+            info = details.text
+            Top10Vacations::Destination.new(info)
         end
     end
 end

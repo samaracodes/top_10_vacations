@@ -1,17 +1,14 @@
 class Top10Vacations::Destination
-    attr_accessor :name
+    attr_accessor :name, :season
+    attr_reader :info
+
     @@all = []
-
-    def initialize(name, season = nil, info = nil)
+    
+    def initialize(name)
         @name = name
-        if season != nil
-            self.season = season
-        end
-
-        if info != nil
-            self.info = info
-        end
-        save
+        @season = season
+        @info = info
+        @@all << self
     end
 
     def self.all
@@ -19,25 +16,9 @@ class Top10Vacations::Destination
         @@all
     end
 
-    def save
-        @@all << self
-    end
-
-    def season
-        @season
-    end
-
-    def season=(season)
-        @season = seasons
-        season.add_destination(self)
-    end
-    
-    def info
+    def self.get_info
+        Top10Vacations::Scraper.scrape_info if @@all.empty?
         @info
     end
 
-    def info=(info)
-        @info = info
-        info.destination << self unless info.destination.include? self
-    end
 end
