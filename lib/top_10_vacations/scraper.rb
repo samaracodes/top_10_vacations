@@ -13,7 +13,7 @@ class Top10Vacations::Scraper
         destinations.shift
 
         destinations.each do |d|
-            result = d.text.split(": ").drop(1).join
+            result = d.text
             Top10Vacations::Destination.new(name)
         end
     end
@@ -28,7 +28,7 @@ class Top10Vacations::Scraper
     
 
         destination_info.each.with_index do |details|
-            result = details.text.split(": ").drop(1).join
+            result = details.text
             Top10Vacations::Destination.new(result)
         end
     end
