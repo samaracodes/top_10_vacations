@@ -4,6 +4,7 @@ class Top10Vacations::Season
 
     def initialize(name)
         @name = name
+        @destinations = []
         save
     end
 
@@ -14,5 +15,22 @@ class Top10Vacations::Season
     def save
         @@all << self
     end
+
+    def destinations
+        @destinations
+    end
+
+    def add_destination(destination)
+        destination.season = self unless destination.season == self
+        @destinations << destination unless @destinations.include?(destination)
+        
+    end
+
+    def info
+        info = @destination.collect do |destination|
+            destination.info
+        end
+    end
+
 
 end
