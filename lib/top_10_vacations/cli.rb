@@ -71,7 +71,7 @@ class Top10Vacations::CLI
         @details = Top10Vacations::Scraper.scrape_info
     
         @details.each.with_index(1) do |d, i|
-            statement = "#{i}. #{d.info.split.join(" ")}"
+            statement = "#{i}. #{d.text.split.join(" ")}"
             puts statement
             binding.pry
         end

@@ -29,7 +29,7 @@ class Top10Vacations::Scraper
 
         destination_info.each.with_index do |details|
             result = details.text.split(": ").drop(1).join
-            Top10Vacations::Info.new(info)
+            Top10Vacations::Destination.new(result)
         end
     end
 end
