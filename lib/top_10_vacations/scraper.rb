@@ -3,34 +3,22 @@
 require 'open-uri'
 class Top10Vacations::Scraper
 
-    def self.scrape_destinations
+    def self.scrapes
 
         url="https://www.rd.com/list/best-places-to-travel-every-month-of-the-year/"
 
         page = Nokogiri::HTML(open(url))
     
-        destinations = page.css('h2')
-        destinations.shift
+        vacations = page.css('h2')
+        vacations.shift
 
-        destinations.each do |d|
-            name = d.text
-            Top10Vacations::Destination.new(name)
+        vacations.each do |d|
+            location = d.text.split(": ").slice(1,2)
+            month = d.text.split(": ").slice(0)
+            info = d.text.split(": ").slice(1,2)
+            Top10Vacations::Vacation.new(location, month, info)
         end
     end
 
-
-    def self.scrape_info
-        url = "https://www.rd.com/list/best-places-to-travel-every-month-of-the-year/" 
-
-        page = Nokogiri::HTML(open(url))
-
-        destination_info = page.css('div.card-content, p ltr')
-    
-
-        destination_info.each.with_index do |details|
-            info = details.text
-            Top10Vacations::Destination.new(info)
-        end
-    end
 end
 
