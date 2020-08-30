@@ -13,27 +13,29 @@ class Top10Vacations::CLI
     end
 
     def menu
-        Vacation.get_months
-
-
+        Vacation.all_months
+        
         puts ""
-        puts "View the Best Vacations by Month, enter a month"
+        puts "View the Best Vacations by Month, enter the number of a month"
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         puts "**If you need to exit, enter exit anytime".colorize(:light_cyan)
         puts ""
         
         
         input = ''
+        input = gets.strip
 
-        input = gets.strip.downcase
+        
 
         if input == "exit"
             exit
-        elsif input != Vacation.get_months.to_s
+        elsif input.to_i != Vacation.all_months.count
             invalid_entry
-            menu
-        elsif input.include? Vacation.get_months.to_s
-            #Vacation.get_info_by_month(input)
+            sleep 2
+            menu 
+        elsif input == Integer
+            number = gets.chomp.to_i 
+            Vacation.search_months(input)
         end
     end
 
@@ -46,8 +48,6 @@ class Top10Vacations::CLI
         puts ":)".colorize(:yellow)
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
-
     end
 
     def invalid_entry
@@ -55,9 +55,8 @@ class Top10Vacations::CLI
         puts "!!!!!!!!!!!!!!!!!!!!!!!".colorize(:red)
         puts "Invalid Entry!".colorize(:red)
         puts "Try Again maybe :(".colorize(:red)
+        puts "Otherwise, enter 'exit' to leave the app.".colorize(:red)
         puts "!!!!!!!!!!!!!!!!!!!!!!!".colorize(:red)
         puts ""
-        sleep 2
-        menu
     end
 end

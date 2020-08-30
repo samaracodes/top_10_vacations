@@ -1,5 +1,5 @@
 class Vacation
-    attr_accessor :info, :month 
+    attr_accessor  :month, :info 
 
     @@all = []
     
@@ -11,37 +11,35 @@ class Vacation
 
 
     def self.all
+        Top10Vacations::Scraper.scrapes if @@all.empty?
         @@all
     end
 
-    def self.get_months
-        Top10Vacations::Scraper.scrapes.to_s
-    
+    def self.find_info(info) 
+        if @@all.include? info
+          @@all.select {|l| l.tag_list.include? tag}.each{|l| l.print_info}
+      end 
+    end
+     
+
+    def self.all_months
+        Vacation.all
+        @@all.map.with_index {|m, i| puts "#{i+1}. #{m.month}"}.uniq 
     end
 
 
-    # def self.get_info_by_month(month)
-    #     if get_months.include? month
-    #         Top10Vacations::Scraper.scrapes.each do |i|
-    #             puts "#{i.text}"
-    #         end
-    #     end
-    # end
-
-    def self.get_info_by_month(input) 
-        if get_months.include? input
-          @@all.select do |i|
-            i.month.include? input.each do |m|
-                m.print_info
-            end
+    def self.search_months(input)
+        if input >= 1 && input <= self.all_months.count
+            month = self.all_months[number-1]
+            @@all.filter {|l| l.info == info}.each {|i| i.print_info}
         end
-    end 
-end
+    end
 
 
     def print_info
         puts ""
-        puts "Vacation Details: #{month} || #{info}"
+        puts "---- Vacation Details: #{@month}---- "
+        puts " #{@info}"
     end
 
 end

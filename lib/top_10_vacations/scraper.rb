@@ -11,28 +11,27 @@ class Top10Vacations::Scraper
 
         page = Nokogiri::HTML(open(url))
 
-        
-        #result = page.css('h2','div p')
-        # result.shift
-        # result.pop
-        # result.pop
-        # result.pop
-        #Used to remove some unwanted Html lines 
+      
 
-        month = page.css('h2').map {|m| m.text}.compact
-        info = page.css('div p').map {|m| m.text}.compact
-        month.shift
+        ma = page.css('h2').map {|m| m.text.split(": ")[0]}.compact
+        inf = page.css('p,dir').map {|m| m.text.split(" : ")}.flatten.compact
+        ma.shift
+        inf.shift
+        inf.pop
+        inf.pop
+        inf.pop
+
+
+
  
-        (1..1).each do 
-            (0..month.size).each do |index|  
-                if month == month 
-                    puts "#{month[index]}"
-                elsif info == info
-                    puts "Infomation: #{info[index]}"
-                end
-            end
+    
+        (0..11).each do |index|
+            month = "#{ma[index]}"
+            info = "#{inf[index]}"
             Vacation.new(month, info)
         end
+        
+       
     end
    
 end
