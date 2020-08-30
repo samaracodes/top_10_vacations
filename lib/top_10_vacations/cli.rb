@@ -1,61 +1,63 @@
+require 'colorize'
 class Top10Vacations::CLI
     
 
     def call
+        puts "--------------------------------------------------------------------- "
         puts "---------------------------------------------------------------------"
-        puts "🅦 🅔 🅛 🅒 🅞 🅜 🅔  🅣 🅞  🅣 🅗 🅔   🅥 🅐 🅒 🅐 🅣 🅘 🅞 🅝 🅢   🅐 🅟 🅟  ❗"
+        puts "      🅦 🅔 🅛 🅒 🅞 🅜 🅔  🅣 🅞  🅣 🅗 🅔   🅥 🅐 🅒 🅐 🅣 🅘 🅞 🅝 🅢   🅐 🅟 🅟  ❗"
         puts "--------------------------------------------------------------------- "
         puts "--------------------------------------------------------------------- "
         puts ""
-        
-        @month = Top10Vacations::Vacation.get_month.text.split(": ").slice(0)
         menu
     end
 
     def menu
+        Vacation.get_months
+
+
         puts ""
         puts "View the Best Vacations by Month, enter a month"
         puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        puts "**If you need to exit, enter exit anytime"
+        puts "**If you need to exit, enter exit anytime".colorize(:light_cyan)
         puts ""
-    
+        
+        
+        input = ''
 
         input = gets.strip.downcase
-        if input.include? @month.downcase
-            vacation_info
-            menu
-        elsif input == "exit"
+
+        if input == "exit"
             exit
-        else
+        elsif input != Vacation.get_months.to_s
             invalid_entry
-        end
-    end
-            
-    def months_list
-        puts ""
-        puts ""
-        puts "Select Vacation Locations by Name: Enter now"
-        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        puts "**If you need to exit, enter exit anytime"
-        vacation_info
-    end
-
-    def vacation_info
-        @info = Top10Vacations::Vacation.get_info.text.split(": ").slice(1,2)
-
-        @info.each.with_index(1) do |info, i|
-            puts "#{info}"
+            menu
+        elsif input.include? Vacation.get_months.to_s
+            #Vacation.get_info_by_month(input)
         end
     end
 
     def exit
-        puts "Hopefully you've got some good inspo! Happy Travels!"
+        puts ""
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "Hopefully you've got some good insight on traveling from us!".colorize(:yellow)
+        puts "Happy Travels!".colorize(:yellow)
+        puts ":)".colorize(:yellow)
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+
     end
 
     def invalid_entry
-        puts "!!!!!!!!!!!!!!!!!!!!!!!"
-        puts "Invalid Entry!"
-        puts "!!!!!!!!!!!!!!!!!!!!!!!"
+        puts ""
+        puts "!!!!!!!!!!!!!!!!!!!!!!!".colorize(:red)
+        puts "Invalid Entry!".colorize(:red)
+        puts "Try Again maybe :(".colorize(:red)
+        puts "!!!!!!!!!!!!!!!!!!!!!!!".colorize(:red)
+        puts ""
+        sleep 2
         menu
     end
 end

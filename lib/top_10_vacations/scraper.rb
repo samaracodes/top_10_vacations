@@ -1,24 +1,39 @@
 
 #This file is used for scraping our outside data
+require 'nokogiri'
 require 'open-uri'
 class Top10Vacations::Scraper
+    
 
     def self.scrapes
 
         url="https://www.rd.com/list/best-places-to-travel-every-month-of-the-year/"
 
         page = Nokogiri::HTML(open(url))
-    
-        vacations = page.css('h2')
-        vacations.shift
 
-        vacations.each do |d|
-            location = d.text.split(": ").slice(1,2)
-            month = d.text.split(": ").slice(0)
-            info = d.text.split(": ").slice(1,2)
-            Top10Vacations::Vacation.new(location, month, info)
+        
+        #result = page.css('h2','div p')
+        # result.shift
+        # result.pop
+        # result.pop
+        # result.pop
+        #Used to remove some unwanted Html lines 
+
+        month = page.css('h2').map {|m| m.text}.compact
+        info = page.css('div p').map {|m| m.text}.compact
+        month.shift
+ 
+        (1..1).each do 
+            (0..month.size).each do |index|  
+                if month == month 
+                    puts "#{month[index]}"
+                elsif info == info
+                    puts "Infomation: #{info[index]}"
+                end
+            end
+            Vacation.new(month, info)
         end
     end
-
+   
 end
 
