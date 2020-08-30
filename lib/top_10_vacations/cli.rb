@@ -25,16 +25,15 @@ class Top10Vacations::CLI
         input = ''
         input = gets.strip
 
-        
 
         if input == "exit"
             exit
-        elsif input.to_i != Vacation.all_months.count
+        elsif input != "exit" ||
             invalid_entry
             sleep 2
             menu 
-        elsif input == Integer
-            number = gets.chomp.to_i 
+        else
+            input = gets.chomp.to_i 
             Vacation.search_months(input)
         end
     end

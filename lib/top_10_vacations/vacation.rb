@@ -1,5 +1,5 @@
 class Vacation
-    attr_accessor  :month, :info 
+    attr_accessor :month, :info 
 
     @@all = []
     
@@ -28,18 +28,11 @@ class Vacation
     end
 
 
-    def self.search_months(input)
-        if input >= 1 && input <= self.all_months.count
-            month = self.all_months[number-1]
-            @@all.filter {|l| l.info == info}.each {|i| i.print_info}
+    def self.search_months(index)
+        if index >= 1 && index 
+            puts "#{@month[index]}" 
+            puts "#{@info[index]}"
         end
-    end
-
-
-    def print_info
-        puts ""
-        puts "---- Vacation Details: #{@month}---- "
-        puts " #{@info}"
     end
 
 end
