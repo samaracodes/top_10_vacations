@@ -15,24 +15,30 @@ class Vacation
         @@all
     end
 
-    def self.find_info(info) 
-        if @@all.include? info
-          @@all.select {|l| l.tag_list.include? tag}.each{|l| l.print_info}
-      end 
-    end
+    # def self.find_info(info) 
+    #     if @@all.include? info
+    #       @@all.select {|l| l.tag_list.include? tag}.each{|l| l.print_info}
+    #   end 
+    # end
      
 
     def self.all_months
-        Vacation.all
-        @@all.map.with_index {|m, i| puts "#{i+1}. #{m.month}"}.uniq 
+        Vacation.all.map {|m| m.month}.uniq 
     end
 
-
-    def self.search_months(index)
-        if index >= 1 && index 
-            puts "#{@month[index]}" 
-            puts "#{@info[index]}"
+    def self.search_months(input)
+        if input >= 1 && input<= Vacation.all_months.count
+            month = Vacation.all_months[input-1]
+            @@all.select {|m| m.print_info if m.month.include? month}
+        else
+            invalid_entry
+            sleep 2
         end
+    end
+
+    def print_info
+        puts "#{@month}" 
+        puts "#{@info}"
     end
 
 end

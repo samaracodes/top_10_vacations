@@ -26,3 +26,41 @@ class Top10Vacations::Scraper
 end
 
 COPY OF SCRAPER INFO
+
+
+
+require 'open-uri'
+require 'nokogiri'
+
+
+
+url="https://www.rd.com/list/best-places-to-travel-every-month-of-the-year/"
+
+page = Nokogiri::HTML(open(url))
+    
+
+month = page.css('h2').map {|m| m.text.split(": ")[0]}.compact
+month.shift
+
+
+
+info = page.css('p,dir').map {|m| m.text.split(" : ")}.flatten.compact
+info.shift
+info.pop
+info.pop
+info.pop
+
+
+q
+#  (1..1).each do
+# (0..month.size).each do |index| 
+#   puts "index: #{index + 1}"
+#   puts "#{month[index]}"
+#   puts "#{info[index]}"
+# end
+# end
+(0..info.size).each do |index|
+  puts ""
+  puts "#{month[index]}"
+  puts "#{info[index]}"
+end
