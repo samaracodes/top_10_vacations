@@ -1,6 +1,8 @@
 # Top10Vacations
 
-This is a CLI Data Gem Project for the 7/6 Cohort at the Flatiron School
+Welcome to the Vacations App!
+
+This app give some inspirtation to plan your next trip at the Best Vacations to take by Month; while also giving information on what these places have to offer.
 
 ## Installation
 
@@ -20,7 +22,9 @@ Or install it yourself as:
 
 ## Usage
 
-This app give some inspirtation to plan your next trip at the top 10 vacation spots; while also catering to the season the user wants to travel. 
+Enter the following to run this app:
+
+ "./bin/vacations" or "ruby bin/vacations"
 
 ## Development
 

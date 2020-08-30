@@ -14,12 +14,6 @@ class Vacation
         Top10Vacations::Scraper.scrapes if @@all.empty?
         @@all
     end
-
-    # def self.find_info(info) 
-    #     if @@all.include? info
-    #       @@all.select {|l| l.tag_list.include? tag}.each{|l| l.print_info}
-    #   end 
-    # end
      
 
     def self.all_months
