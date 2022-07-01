@@ -9,7 +9,7 @@ class Top10Vacations::Scraper
 
         url="https://www.rd.com/list/best-places-to-travel-every-month-of-the-year/"
 
-        page = Nokogiri::HTML(open(url))
+        page = Nokogiri::HTML(URI.open(url))
 
       
 
