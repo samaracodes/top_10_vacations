@@ -14,7 +14,7 @@ class Top10Vacations::Scraper
       
 
         ma = page.css('h2').map {|m| m.text.split(": ")[0]}.compact
-        inf = page.css('p,dir').map {|m| m.text.split(" : ")}.flatten.compact.slice(1,12)
+        inf = page.css('p,dir').map {|m| m.text.split(" : ")}.flatten.compact.slice(6,12)
     
 
         ma.shift
