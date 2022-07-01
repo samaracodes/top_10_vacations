@@ -5,3 +5,5 @@ gem 'pry'
 gemspec
 
 gem "rake", "~> 12.0"
+
+gem 'top_10_vacations'
