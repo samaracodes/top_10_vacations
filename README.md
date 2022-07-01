@@ -4,6 +4,8 @@ Welcome to the Vacations App!
 
 This app give some inspirtation to plan your next trip at the Best Vacations to take by Month; while also giving information on what these places have to offer.
 
+The project outline is to build a CLI app that scrapes a website for information, and then utilizes that scraped information to provide the user with at least one-layer deep of information to interact with.
+
 ## Installation
 
 Add this line to your application's Gemfile:
